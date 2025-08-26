@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dreamking</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|Poppins">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+  /* 🔥 GLOBAL RESET */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    margin: 0; padding: 0; width: 100%;
+    overflow-x: hidden; scroll-behavior: smooth;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  /* Fixed navbar ke liye safe space */
+  body { padding-top: 70px; }
+
+  .heading1{ font-family: 'Abril Fatface', serif; }
+
+  /* Navbar */
+  .navbar {
+    position: fixed; top: 0; left: 0; right: 0;
+    background: rgb(27, 27, 27); color: #fff; z-index: 1000;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 20px;
+  }
+  .navbar img { height: 50px; }
+  .navbar-links { display: flex; gap: 20px; }
+  .navbar-links a { color: white; text-decoration: none; font-weight: bold; transition: color 0.3s; }
+  .navbar-links a:hover { color: #f4c10f; }
+
+  .hamburger { display: none; font-size: 30px; cursor: pointer; }
+
+  /* Mobile Menu */
+  .mobile-menu {
+    position: fixed; top: 0; left: -100%; width: 70%; height: 100vh;
+    background: rgba(0, 0, 0, 0.95); color: #fff; display: flex; flex-direction: column;
+    gap: 30px; padding: 80px 30px; transition: 0.4s; z-index: 1100;
+  }
+  .mobile-menu a { color: white; text-decoration: none; font-size: 20px; }
+  .mobile-menu a:hover { color: #f4c10f; }
+  .mobile-menu.open { left: 0; }
+
+  /* Section layout */
+  .section {
+    display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;
+    padding: 50px 25px; max-width: 1200px; margin: auto; gap: 30px; position: relative;
+  }
+  .text-box { flex: 1; min-width: 300px; position: relative; }
+  .text-box h1 { font-size: 34px; margin-bottom: 5px; color: #1565c0; text-transform: uppercase; }
+  .text-box h1 span { display: block; font-size: 40px; color: #111; font-weight: bold; margin-top: 5px; }
+  .text-box p { font-size: 18px; line-height: 1.6; margin-bottom: 15px; }
+  .text-box h2 { margin-top: 20px; font-size: 26px; color: #1565c0; }
+  .text-box h3 { margin-top: 15px; font-size: 22px; color: #111; }
+
+  .features ul { list-style: none; padding-left: 0; }
+  .features ul li { margin-bottom: 10px; font-size: 16px; }
+  .features ul li::before { content: "✔ "; color: #1565c0; font-weight: bold; }
+
+  .image-box { flex: 1; min-width: 300px; display: flex; justify-content: center; align-items: center; }
+  .image-box img {
+    width: 100%; max-width: 420px; border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+  .image-box img:hover { transform: scale(1.03); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+
+  .material-back-arrow {
+    position: absolute; top: 8px; left: 8px; background: #fff; color: #1565c0;
+    text-decoration: none; font-size: 22px; font-weight: bold; border-radius: 50%;
+    padding: 6px 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  }
+
+  /* Cards: image hover/shadow bahar na nikle */
+  .rounded-4.shadow-lg, .bg-white.rounded-4.shadow-lg.mb-5.p-3 { overflow: hidden; }
+
+  /* ✅ Mobile responsive */
+  @media (max-width: 768px) {
+    .section { flex-direction: column-reverse; padding: 25px 15px; }
+    .text-box, .image-box { text-align: center; min-width: 0; width: 100%; }
+    .text-box h1 { font-size: 26px; }
+    .text-box h1 span { font-size: 28px; }
+    .text-box p { font-size: 16px; }
+    .features ul li { font-size: 15px; }
+    .image-box img { max-width: 90%; }
+    .navbar-links { display: none; }
+    .hamburger { display: block; }
+  }
+  @media (max-width: 480px) {
+    .text-box h1 { font-size: 22px; }
+    .text-box h1 span { font-size: 24px; }
+    .text-box p { font-size: 14px; }
+    .features ul li { font-size: 14px; }
+  }
+
+  /* Footer */
+  .footer-dark { margin: 0; background-color: #111; color: #ddd; padding-top: 3rem; width: 100%; font-family: 'Segoe UI', sans-serif; }
+  .footer-dark .container { max-width: 100% !important; padding-left: 0 !important; padding-right: 0 !important; margin: 0 auto !important; }
+  .footer-title { font-size: 2rem; font-weight: 700; color: #fff; }
+  .footer-text { font-size: 1rem; color: #aaa; max-width: 300px; line-height: 1.6; }
+  .footer-heading { font-size: 1.2rem; font-weight: 600; color: #fff; margin-bottom: 1rem; }
+  .footer-links a { color: #bbb; text-decoration: none; display: block; margin-bottom: 0.5rem; transition: color 0.3s; }
+  .footer-links a:hover { color: #ffc107; }
+  .footer-contact { font-size: 0.95rem; color: #aaa; line-height: 1.6; }
+  .footer-social a { color: #bbb; font-size: 1.3rem; margin-right: 1rem; transition: transform 0.3s, color 0.3s; }
+  .footer-social a:hover { transform: scale(1.2); color: #ffc107; }
+  .footer-divider { border-top: 1px solid #333; }
+  .footer-bottom-text { font-size: 0.9rem; color: #777; }
+
+  /* Floating Buttons */
+  .whatsapp-float, .instagram-float {
+    position: fixed; right: 20px; z-index: 999; border-radius: 50%;
+    padding: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); transition: transform 0.3s ease;
+  }
+  .whatsapp-float { bottom: 20px; background-color: #25D366; }
+  .instagram-float { bottom: 90px; background-color: #E1306C; }
+  .whatsapp-float:hover, .instagram-float:hover { transform: scale(1.1); }
+  .whatsapp-float img, .instagram-float img { width: 40px; height: 40px; }
+  @media (max-width: 768px) {
+    .whatsapp-float { bottom: 15px; right: 15px; padding: 8px; }
+    .instagram-float { bottom: 90px; right: 15px; padding: 8px; }
+    .whatsapp-float img, .instagram-float img { width: 36px; height: 36px; }
+  }
+
+  /* Tables: mobile-safe */
+  .table { margin-bottom: 0; }
+  @media (max-width: 576px) {
+    .table thead th, .table td { white-space: nowrap; font-size: 14px; }
+  }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <img src="" />
+    <div class="navbar-links">
+      <a href="index.html#home">Home</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#materials">Materials</a>
+      <a href="index.html#our-products">Products</a>
+      <a href="index.html#certificates-awards">Certificate</a>
+      <a href="index.html#footer">Contact</a>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html#home" onclick="closeMenu()">Home</a>
+    <a href="index.html#about" onclick="closeMenu()">About</a>
+    <a href="index.html#materials" onclick="closeMenu()">Materials</a>
+    <a href="index.html#our-products" onclick="closeMenu()">Products</a>
+    <a href="index.html#certificates-awards" onclick="closeMenu()">Certificate</a>
+    <a href="index.html#footer" onclick="closeMenu()">Contact</a>
+  </div>
+
+  <script>
+    function toggleMenu(){ document.getElementById("mobileMenu").classList.toggle("open"); }
+    function closeMenu(){ document.getElementById("mobileMenu").classList.remove("open"); }
+  </script>
+
+  <!-- ✅ Page Content -->
+  <div style="padding:40px 20px;">
+    <div class="container py-5">
+      <h1 class="text-center mb-5">Our <span>Sofa Cum Beds</span></h1>
+
+      <!-- Sofa 1 -->
+      <div class="bg-white rounded-4 shadow-lg mb-5 p-3">
+        <section class="section">
+          <div class="text-box">
+            <a href="index.html#our-products" class="material-back-arrow">←</a><br><br>
+            <h1>Fabric Sofa <span>Cum Bed</span></h1>
+            <p>A stylish fabric sofa that easily converts into a comfortable bed.</p>
+            <h3>Key Features:</h3>
+            <div class="features"><ul>
+              <li>High-quality fabric finish</li>
+              <li>Easy folding mechanism</li>
+              <li>Space-saving design</li>
+            </ul></div>
+            <h3>Available Sizes & Prices:</h3>
+            <div class="table-responsive mt-3">
+              <table class="table table-bordered mb-0">
+                <thead class="table-primary"><tr><th>Size</th><th>Seating Capacity</th><th>Price (₹)</th></tr></thead>
+                <tbody>
+                  <tr><td>Single</td><td>2 Seater</td><td>₹14,999</td></tr>
+                  <tr><td>Double</td><td>3 Seater</td><td>₹21,999</td></tr>
+                  <tr><td>Queen</td><td>4 Seater</td><td>₹29,999</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="image-box"><img src="fabir sofa cum bed 1.jpg" alt="Fabric Sofa Cum Bed"></div>
+        </section>
+      </div>
+
+      <!-- Sofa 2 -->
+      <div class="bg-white rounded-4 shadow-lg mb-5 p-3">
+        <section class="section">
+          <div class="text-box">
+            <h1>Wooden Sofa <span>Cum Bed</span></h1>
+            <p>Strong wooden frame sofa cum bed for long durability and elegant design.</p>
+            <h3>Key Features:</h3>
+            <div class="features"><ul>
+              <li>Premium wooden structure</li>
+              <li>Comfortable cushion seats</li>
+              <li>Durable & stylish look</li>
+            </ul></div>
+            <h3>Available Sizes & Prices:</h3>
+            <div class="table-responsive mt-3">
+              <table class="table table-bordered mb-0">
+                <thead class="table-primary"><tr><th>Size</th><th>Seating Capacity</th><th>Price (₹)</th></tr></thead>
+                <tbody>
+                  <tr><td>Single</td><td>2 Seater</td><td>₹17,999</td></tr>
+                  <tr><td>Double</td><td>3 Seater</td><td>₹25,999</td></tr>
+                  <tr><td>Queen</td><td>4 Seater</td><td>₹34,999</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="image-box"><img src="Wooden Sofa Cum Bed 2.jpg" alt="Wooden Sofa Cum Bed"></div>
+        </section>
+      </div>
+
+      <!-- Sofa 3 -->
+      <div class="bg-white rounded-4 shadow-lg mb-5 p-3">
+        <section class="section">
+          <div class="text-box">
+            <h1>Leather Sofa <span>Cum Bed</span></h1>
+            <p>Luxurious leather finish sofa that turns into a modern bed for ultimate comfort.</p>
+            <h3>Key Features:</h3>
+            <div class="features"><ul>
+              <li>Premium leather upholstery</li>
+              <li>Modern & elegant design</li>
+              <li>Highly durable & stylish</li>
+            </ul></div>
+            <h3>Available Sizes & Prices:</h3>
+            <div class="table-responsive mt-3">
+              <table class="table table-bordered mb-0">
+                <thead class="table-primary"><tr><th>Size</th><th>Seating Capacity</th><th>Price (₹)</th></tr></thead>
+                <tbody>
+                  <tr><td>Single</td><td>2 Seater</td><td>₹22,999</td></tr>
+                  <tr><td>Double</td><td>3 Seater</td><td>₹32,999</td></tr>
+                  <tr><td>Queen</td><td>4 Seater</td><td>₹42,999</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="image-box"><img src="Leather Sofa Cum Bed 3.webp" alt="Leather Sofa Cum Bed"></div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <!-- footer section -->
+  <div id="footer"></div>
+  <footer class="footer-dark">
+    <div class="container-fluid py-5">
+      <div class="row gy-4 justify-content-between">
+        <div class="col-md-4">
+          <h3 class="footer-title">Manishafoam</h3>
+          <p class="footer-text">
+            Elevating interiors with premium blinds, curtains, and wallpapers. Tailored for comfort & luxury living.
+          </p>
+        </div>
+
+        <div class="col-md-3">
+          <h5 class="footer-heading">Quick Links</h5>
+          <ul class="footer-links list-unstyled">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#materials">Materials</a>
+            <a href="#our-products">Products</a>
+            <a href="#certificates-awards">certificate</a>
+            <a href="#footer">Contact</a>
+          </ul>
+        </div>
+
+        <div class="col-md-4">
+          <h5 class="footer-heading">Contact Us</h5>
+          <p class="footer-contact">
+            📍 Mohali, Punjab<br>
+            📞 +91 8110000035<br>
+            📞 +91 7440000053<br>
+            📞 +91 8000206060<br>
+            ✉️ info@manishafoam.com
+          </p>
+          <div class="footer-social">
+            <a href="#"><i class="bi bi-facebook"></i></a>
+            <a href="#"><i class="bi bi-instagram"></i></a>
+            <a href="#"><i class="bi bi-whatsapp"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <hr class="footer-divider my-4">
+      <p class="text-center footer-bottom-text">&copy; 2025 Manisha foam. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- 🌐 Floating WhatsApp Button -->
+  <a href="https://wa.me/917440000053" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+    <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" alt="WhatsApp Chat">
+  </a>
+
+  <!-- 📸 Floating Instagram Button -->
+  <a href="https://www.instagram.com/manisha_foam_industry?igsh=MXhsMXlzcHYxMXBpZw%3D%3D&utm_source=qr" class="instagram-float" target="_blank" aria-label="View on Instagram">
+    <img src="https://img.icons8.com/fluency/48/instagram-new.png" alt="Instagram">
+  </a>
+
+  <!-- 💅 Floating Buttons CSS -->
+  <style>
+    .whatsapp-float, .instagram-float { position: fixed; right: 20px; z-index: 999; border-radius: 50%; padding: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); transition: transform 0.3s ease; }
+    .whatsapp-float { bottom: 20px; background-color: #25D366; }
+    .instagram-float { bottom: 90px; background-color: #E1306C; }
+    .whatsapp-float:hover, .instagram-float:hover { transform: scale(1.1); }
+    .whatsapp-float img, .instagram-float img { width: 40px; height: 40px; }
+    @media screen and (max-width: 768px) {
+      .whatsapp-float { bottom: 15px; right: 15px; padding: 8px; }
+      .instagram-float { bottom: 90px; right: 15px; padding: 8px; }
+      .whatsapp-float img, .instagram-float img { width: 36px; height: 36px; }
+    }
+  </style>
+</body>
+</html>
