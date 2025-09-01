@@ -1072,7 +1072,7 @@ function closeLightbox(event) {
       <!-- Brand / About -->
       <div class="col-md-4">
         <h3 class="footer-title">Manishafoam</h3>
-        <p class="footer-text">
+        <p class="footer-text" >
           Elevating interiors with premium blinds, curtains, and wallpapers. Tailored for comfort & luxury living.
         </p>
       </div>
@@ -1081,12 +1081,12 @@ function closeLightbox(event) {
       <div class="col-md-3">
         <h5 class="footer-heading">Quick Links</h5>
         <ul class="footer-links list-unstyled">
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#materials">Materials</a>
-      <a href="#our-products">Products</a>
-      <a href="#certificates-awards">certificate</a>
-      <a href="#footer">Contact</a>
+      <a href="#home">Home</a><br>
+      <a href="#about">About</a><br>
+      <a href="#materials">Materials</a><br>
+      <a href="#our-products">Products</a><br>
+      <a href="#certificates-awards">certificate</a><br>
+      <a href="#footer">Contact</a><br>
         </ul>
       </div>
 
@@ -1138,6 +1138,7 @@ function closeLightbox(event) {
   color: #aaa;
   max-width: 300px;
   line-height: 1.6;
+ 
 }
 
 .footer-heading {
@@ -1164,6 +1165,30 @@ function closeLightbox(event) {
   color: #aaa;
   line-height: 1.6;
 }
+
+/* Mobile footer center fix */
+@media (max-width: 576px) {
+  .footer-dark .row { 
+    justify-content: center !important; 
+  }
+  .footer-dark .footer-title,
+  .footer-dark .footer-text,
+  .footer-dark 
+  .footer-dark 
+  .footer-dark 
+  .footer-dark {
+    text-align: center !important;
+  }
+  .footer-dark .footer-text {
+    max-width: 320px;
+    margin: 0 auto;        /* center block */
+  }
+  .footer-dark .footer-links a {
+    display: inline-block; /* links ko center me line-wrap */
+    margin: 0 .5rem .5rem;
+  }
+}
+
 
 .footer-social a {
   color: #bbb;
