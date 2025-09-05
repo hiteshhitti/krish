@@ -145,28 +145,38 @@
  }
 } */
 
-@media (max-width: 768px) {
-  .content-inner {
-    flex-direction: row;     /* keep side-by-side */
-    flex-wrap: nowrap;       /* don't drop to next line */
-    gap: 12px;
-    padding: 0 8px;
+@media (max-width: 768px){
+  .content-inner{
+    flex-direction: row;        /* side by side hi rahe */
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: nowrap;          /* neeche na jaye */
+    padding: 0 10px;
+    gap: 10px;
   }
-  .text-block {
-    flex: 1 1 60%;
+
+  .text-block{
+    flex: 1 1 55%;
+    max-width: 55%;
+    text-align: left;
   }
-  .heading1 {
-    font-size: clamp(28px, 7.2vw, 40px); /* ✅ boost size on small screens */
+
+  .heading1{
+    font-size: 34px;            /* readable size */
+    line-height: 1.2;
   }
 
   .btn{
-    font-size: 14px;
-    padding: 8px 16px;
+    font-size: 15px;
+    padding: 8px 18px;
   }
 
-  .top-image {
-    flex: 0 1 40%;
-    width: min(44vw, 220px);  /* ✅ image bada dikhe but control me */
+  .top-image{
+    flex: 1 1 40%;
+    max-width: 40vw;            /* ✅ responsive, screen ke hisaab se */
+    min-width: 120px;           /* zyada chhoti na ho */
+    height: auto;
+    order: 2;                   /* right side me fix */
   }
 }
   </style>
