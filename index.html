@@ -86,44 +86,54 @@
 
 .content-wrapper {
   background: url('./background12.jpeg') center center / cover no-repeat;
-  min-height: calc(100vh - 70px);   /* screen ka height navbar ke baad */
-  margin-top: 70px;                 /* navbar offset */
+  min-height: calc(100vh - 70px);   /* fixed navbar offset */
+  margin-top: 70px;
   display: flex;
   align-items: center;
-  justify-content: space-between;   /* text left, image right */
-  padding: 0 20px;
-  overflow: hidden;                 /* ✅ background bahar na nikle */
+  justify-content: center;
+  padding: 0 16px;                  /* thoda compact */
+  overflow: hidden;                 /* bg overflow guard */
 }
 
 
 
 /* Side-by-side container */
-.content-inner{
+.content-inner {
   width: 100%;
   max-width: 1200px;
-  margin: 0 auto;
   display: flex;
+  flex-direction: row;              /* force row */
   align-items: center;
   justify-content: space-between;
-  gap: 40px;
-  /* OPTIONAL: readable panel - agar nahi chahiye to comment kar do */
-  /* background: rgba(255,255,255,0.75);
-  backdrop-filter: saturate(1.2) blur(2px);
-  padding: 24px 28px;
-  border-radius: 14px; */
+  gap: 24px;
 }
 
 /* Text block */
-.text-block{ max-width: 520px; }
-.heading1{ margin: 0 0 16px; font-size: clamp(28px, 5vw, 60px); line-height: 1.1; }
+.text-block {
+  flex: 1 1 58%;
+  min-width: 0;                     /* wrap without overflow */
+}
+
+/* Heading size that doesn't get tiny */
+.heading1 {
+  /* remove other heading1 font-size rules if any */
+  margin: 0 0 12px;
+  line-height: 1.15;
+  color: #00214d;
+  font-size: clamp(36px, 6.5vw, 64px);  /* ✅ never too small, never too big */
+}
+
 
 /* Button (aapki existing .btn chalegi) */
 
 /* Right image */
-.top-image{
-  width: clamp(220px, 34vw, 520px);
-  height: auto;
+.top-image {
+  flex: 0 1 42%;
   display: block;
+  height: auto;
+  width: clamp(220px, 38vw, 520px);     /* ✅ scales up on mobile too */
+  max-width: 100%;
+  object-fit: contain;
 }
 
 /* Mobile: stack */
@@ -135,26 +145,18 @@
  }
 } */
 
-@media (max-width: 768px){
-  .content-inner{
-    flex-direction: row;       /* ✅ side-by-side hi rahe */
-    flex-wrap: nowrap;           
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 12px;           /* thoda andar kheecho */
+@media (max-width: 768px) {
+  .content-inner {
+    flex-direction: row;     /* keep side-by-side */
+    flex-wrap: nowrap;       /* don't drop to next line */
     gap: 12px;
+    padding: 0 8px;
   }
-
-  .text-block{
-    flex: 1 1 60%;             /* text thoda zyada space le */
-    max-width: 55%;
-    word-wrap: break-word;     /* text wrap kare */
-    font-size: 16px;           /* text size chhota */
+  .text-block {
+    flex: 1 1 60%;
   }
-
-  .heading1{
-    font-size: 28px;           /* heading resize */
-    line-height: 1.2;
+  .heading1 {
+    font-size: clamp(28px, 7.2vw, 40px); /* ✅ boost size on small screens */
   }
 
   .btn{
@@ -162,12 +164,9 @@
     padding: 8px 16px;
   }
 
-  .top-image{
-    flex: 1 1 40%;             /* image right me ho */
-    width: 40%;
-    max-width: 150px;
-    height: auto;
-    order: 2;                  /* ✅ image ko right side bhej do */
+  .top-image {
+    flex: 0 1 40%;
+    width: min(44vw, 220px);  /* ✅ image bada dikhe but control me */
   }
 }
   </style>
