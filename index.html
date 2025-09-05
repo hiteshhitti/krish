@@ -86,13 +86,15 @@
 
 .content-wrapper {
   background: url('./background12.jpeg') center center / cover no-repeat;
-  min-height: calc(100vh - 70px);   /* navbar ke baad full screen */
-  margin-top: 70px;                 /* fixed navbar offset */
+  min-height: calc(100vh - 70px);   /* screen ka height navbar ke baad */
+  margin-top: 70px;                 /* navbar offset */
   display: flex;
   align-items: center;
   justify-content: space-between;   /* text left, image right */
   padding: 0 20px;
+  overflow: hidden;                 /* ✅ background bahar na nikle */
 }
+
 
 
 /* Side-by-side container */
