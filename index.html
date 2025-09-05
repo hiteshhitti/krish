@@ -32,13 +32,21 @@
 
   /* Content */
   .content-wrapper{position:relative;text-align:center;padding-top:20px;padding-bottom:200px;margin-top:70px;}
-  .content-inner{width:100%;max-width:1200px;margin:0 auto;padding-inline:16px;display:flex;flex-direction:column;align-items:center;gap:24px;}
-  .top-image{width:190px;height:190px;object-fit:contain;display:block;margin-top:100px;}
+  .content-inner{
+    width:100%;
+    max-width:1200px;
+    margin:0 auto;
+    padding-inline:16px;
+    display:flex;
+    /* flex-direction:column; */
+    align-items:center;
+    gap:24px;}
+  /* .top-image{width:190px;height:190px;object-fit:contain;display:block;margin-top:100px;} */
   .text-block{margin-top:10px;}
   h1{margin:8px 0 5px;font-size:70px;font-weight:bold;color:#00214d;line-height:1.05;}
   .btn{padding:12px 30px;font-family:'Great Vibes',cursive;font-size:20px;color:#f4c10f;border:2px solid #f4c10f;text-decoration:none;border-radius:5px;transition:all 0.3s ease;animation:fadeInUp 2s ease-out;margin-top:15px;}
   .btn:hover{background:#f4c10f;color:#000;box-shadow:0 4px 20px rgba(244,193,15,0.5);}
-  .product-image{position:absolute;bottom:0;left:0;width:100%;height:auto;z-index:-1;object-fit:cover;display:block;}
+  /* .product-image{position:absolute;bottom:0;left:0;width:100%;height:auto;z-index:-1;object-fit:cover;display:block;} */
 
   /* Mobile */
   @media(max-width:768px){
@@ -50,13 +58,68 @@
 
   /* Desktop: text LEFT, image RIGHT */
   @media(min-width:992px){
-    .content-inner{flex-direction:row; /* 👈 pehle ulta tha, ab text left image right */ align-items:center;justify-content:center;gap:60px;}
-    .top-image{margin-top:120px;width:600px;height:400px;}
-    .text-block{margin-top:120px;text-align:left;}
+    .content-inner{
+    flex-direction:row; /* 👈 pehle ulta tha, ab text left image right */ 
+    align-items:center;
+    justify-content:center;
+    gap:60px;
+  }
+    .top-image{
+    /* margin-top:120px; */
+    width:clamp(280px, 34vw, 520px);
+    height:400px;
+  }
+    .text-block{
+    /* margin-top:120px; */
+    text-align:left;
+  }
     h1{font-size:60px;}
   }
 
   @keyframes fadeInUp{from{transform:translateY(40px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+
+  .content-wrapper{
+  background: url('./background12.jpeg') center/cover no-repeat;
+  min-height: calc(100vh - 70px); /* navbar ka offset */
+  margin-top: 70px;               /* fixed navbar ke niche */
+  display: flex;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+/* Side-by-side container */
+.content-inner{
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  /* OPTIONAL: readable panel - agar nahi chahiye to comment kar do */
+  /* background: rgba(255,255,255,0.75);
+  backdrop-filter: saturate(1.2) blur(2px);
+  padding: 24px 28px;
+  border-radius: 14px; */
+}
+
+/* Text block */
+.text-block{ max-width: 520px; }
+.heading1{ margin: 0 0 16px; font-size: clamp(28px, 5vw, 60px); line-height: 1.1; }
+
+/* Button (aapki existing .btn chalegi) */
+
+/* Right image */
+.top-image{
+  width: clamp(220px, 34vw, 520px);
+  height: auto;
+  display: block;
+}
+
+/* Mobile: stack */
+@media (max-width: 768px){
+  .content-inner{ flex-direction: column; text-align: center; }
+}
   </style>
 </head>
 <body>
@@ -86,16 +149,16 @@
   </div>
 
   <!-- Main -->
-  <div class="content-wrapper">
-    <div class="content-inner">
-      <div class="text-block">
-        <h1 class="heading1">Manisha Foam<br>Industry</h1>
-        <a href="#our-products" class="btn">Explore More</a>
-      </div>
-      <img src="./softy mattress1.webp" alt="Logo or Decorative Image" class="top-image">
+<div class="content-wrapper">
+  <div class="content-inner">
+    <div class="text-block">
+      <h1 class="heading1">Manisha Foam<br>Industry</h1>
+      <a href="#our-products" class="btn">Explore More</a>
     </div>
-    <img src="./background12.jpeg" alt="Foam Mattress" class="product-image">
+    <img src="./abcdef.png" alt="Logo or Decorative Image" class="top-image">
   </div>
+</div>
+
 
   <script>
     function toggleMenu(){document.getElementById("mobileMenu").classList.toggle("open");}
