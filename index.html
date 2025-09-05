@@ -86,11 +86,14 @@
 
   .content-wrapper{
   background: url('./background12.jpeg') center/cover no-repeat;
-  min-height: calc(100vh - 70px); /* navbar ka offset */
-  margin-top: 70px;               /* fixed navbar ke niche */
-  display: flex;
-  align-items: center;
-  padding: 0px 20px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  /* min-height: calc(100vh - 70px); navbar ka offset */
+  /* margin-top: 70px;               fixed navbar ke niche */
+  /* display: flex; */
+  /* align-items: center; */
+  /* padding: 0px 20px; */
 }
 
 /* Side-by-side container */
@@ -159,12 +162,11 @@
   }
 
   .top-image{
-    /* flex: 1 1 40%;             image right me ho */
-    width: auto;
-    max-width: 100%;
+    flex: 1 1 40%;             /* image right me ho */
+    width: 40%;
+    max-width: 150px;
     height: auto;
-    display: block;
-    /* order: 2;                  ✅ image ko right side bhej do */
+    order: 2;                  /* ✅ image ko right side bhej do */
   }
 }
   </style>
