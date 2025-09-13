@@ -752,6 +752,99 @@
   .content-inner { flex-direction: row !important; }
 .text-block { width: 60%; }
 .top-image { width: 40%; max-width: 320px; }
+
+
+/* ===== Make main section larger & more prominent ===== */
+/* Put this near the end of your stylesheet to override earlier rules */
+
+.content-wrapper {
+  min-height: calc(100vh - 70px); /* ensures big hero area */
+  padding-top: 32px;
+  padding-bottom: 32px;
+}
+
+/* Slightly wider text area and larger image */
+.content-inner {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;               /* keep side-by-side on larger screens */
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;                       /* more breathing room */
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Text block takes a bit more space so heading is prominent */
+.text-block {
+  flex: 1 1 60%;
+  min-width: 300px;
+  padding: 8px 12px;
+}
+
+/* Bigger, responsive heading */
+.heading1 {
+  font-size: clamp(42px, 8vw, 88px); /* larger max size */
+  line-height: 1.05;
+  margin-bottom: 12px;
+}
+
+/* Make the CTA button slightly larger */
+.btn {
+  padding: 14px 34px;
+  font-size: 22px;
+  border-radius: 8px;
+}
+
+/* Make image larger and allow it to grow */
+.top-image {
+  flex: 0 1 40%;
+  width: 100%;
+  max-width: 620px;     /* larger max width on desktop */
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* If you want the image to have a consistent taller look on desktop */
+@media (min-width: 992px) {
+  .top-image {
+    height: 460px;      /* sets visible height while keeping aspect via object-fit */
+    max-width: 540px;   /* ensure it doesn't overflow container */
+  }
+}
+
+/* Mobile adjustments: keep them side-by-side but readable */
+@media (max-width: 768px) {
+  .content-inner {
+    flex-wrap: wrap;    /* allow wrap on narrower screens */
+    gap: 20px;
+  }
+  .text-block {
+    flex: 1 1 100%;
+    text-align: center;
+    padding: 6px 8px;
+  }
+  .top-image {
+    flex: 1 1 100%;
+    max-width: 380px;
+    width: 85%;
+    height: auto;
+    margin: 0 auto;
+  }
+  .heading1 {
+    font-size: clamp(30px, 9vw, 48px);
+  }
+  .btn { font-size: 18px; padding: 12px 26px; }
+}
+
+/* Very small phones: slightly smaller image so text fits */
+@media (max-width: 420px) {
+  .top-image { max-width: 300px; width: 78%; }
+  .heading1 { font-size: 30px; }
+}
+
   </style>
 </head>
 <body>
